@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      META TAGS
+      Essential meta information for the page
+    -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Spring Boot JWT Security - A comprehensive learning application demonstrating Spring Boot Security with JWT authentication and React frontend integration"
+    />
+
+    <!--
+      FAVICON
+      Icon shown in browser tab
+      Place favicon.ico in public folder
+    -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+
+    <!--
+      APPLE TOUCH ICON
+      Icon for iOS home screen
+    -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+    <!--
+      MANIFEST
+      PWA configuration
+      Defines how app appears when installed
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!--
+      TITLE
+      Page title shown in browser tab
+    -->
+    <title>Spring Boot JWT Security - Todo App</title>
+  </head>
+  <body>
+    <!--
+      NO SCRIPT MESSAGE
+
+      Shown to users who have JavaScript disabled
+      React requires JavaScript to run
+    -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!--
+      ROOT DIV
+
+      React application mounts here
+      Everything inside this div is controlled by React
+      See src/index.js for mount code
+
+      Process:
+      1. Browser loads this HTML
+      2. Browser sees <div id="root"></div> (empty)
+      3. Browser loads JavaScript bundle
+      4. src/index.js executes
+      5. React renders app inside this div
+      6. User sees fully rendered React app
+    -->
+    <div id="root"></div>
+
+    <!--
+      SCRIPTS
+
+      Note: JavaScript bundles are automatically injected here by Create React App
+      No need to manually add <script> tags
+
+      Build process adds:
+      - Runtime bundle (webpack runtime)
+      - Vendor bundle (node_modules)
+      - Main bundle (your app code)
+
+      Example output after build:
+      <script src="/static/js/runtime-main.js"></script>
+      <script src="/static/js/2.chunk.js"></script>
+      <script src="/static/js/main.chunk.js"></script>
+    -->
+  </body>
+</html>
+
+<!--
+  ============================================
+  HTML STRUCTURE EXPLAINED
+  ============================================
+
+  <!DOCTYPE html>
+  - Declares HTML5 document type
+  - Ensures browser uses standards mode
+
+  <html lang="en">
+  - Sets language to English
+  - Helps screen readers
+  - Helps search engines
+
+  <meta charset="utf-8">
+  - Character encoding (supports all languages)
+  - Always UTF-8 for modern websites
+
+  <meta name="viewport" ...>
+  - Makes site responsive on mobile
+  - width=device-width: Match screen width
+  - initial-scale=1: No zoom on load
+
+  <meta name="theme-color" ...>
+  - Browser UI color (mobile)
+  - Shows in Android address bar
+
+  %PUBLIC_URL%
+  - Placeholder replaced during build
+  - Development: ""
+  - Production: "/my-app" (if using subdirectory)
+
+  ============================================
+  ADDING CUSTOM FONTS
+  ============================================
+
+  Google Fonts:
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  Then in CSS:
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  ============================================
+  ADDING EXTERNAL SCRIPTS
+  ============================================
+
+  Add in <head> for critical scripts:
+  <script src="https://example.com/script.js"></script>
+
+  Add before </body> for analytics:
+  <script>
+    // Google Analytics
+  </script>
+
+  ============================================
+  SEO IMPROVEMENTS
+  ============================================
+
+  Add more meta tags for better SEO:
+
+  <meta name="keywords" content="spring boot, jwt, react, security">
+  <meta name="author" content="Your Name">
+  <meta property="og:title" content="Spring Boot JWT Security">
+  <meta property="og:description" content="...">
+  <meta property="og:image" content="%PUBLIC_URL%/preview.png">
+  <meta property="og:url" content="https://yoursite.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  ============================================
+  PWA (PROGRESSIVE WEB APP)
+  ============================================
+
+  manifest.json defines PWA behavior:
+  {
+    "short_name": "Todo App",
+    "name": "Spring Boot JWT Todo",
+    "icons": [
+      {
+        "src": "favicon.ico",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/x-icon"
+      },
+      {
+        "src": "logo192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "logo512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+  }
+
+  ============================================
+  PERFORMANCE OPTIMIZATION
+  ============================================
+
+  1. Preconnect to external domains:
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  2. Preload critical resources:
+     <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
+  3. DNS prefetch:
+     <link rel="dns-prefetch" href="https://api.example.com">
+
+  4. Defer non-critical scripts:
+     <script src="analytics.js" defer></script>
+
+  ============================================
+  ACCESSIBILITY
+  ============================================
+
+  1. Set language:
+     <html lang="en">
+
+  2. Skip to content link (add in body):
+     <a href="#main" class="skip-link">Skip to main content</a>
+     <main id="main">...</main>
+
+  3. ARIA landmarks (in React components):
+     <header role="banner">
+     <nav role="navigation">
+     <main role="main">
+     <footer role="contentinfo">
+
+  ============================================
+  ENVIRONMENT VARIABLES
+  ============================================
+
+  Access in HTML:
+  %PUBLIC_URL% - Public folder URL
+  %REACT_APP_*% - Custom env variables
+
+  Example:
+  API URL from .env:
+  REACT_APP_API_URL=http://localhost:8080
+
+  In index.html:
+  <meta name="api-url" content="%REACT_APP_API_URL%">
+
+  ============================================
+  TROUBLESHOOTING
+  ============================================
+
+  Blank page:
+  - Check console for errors
+  - Ensure <div id="root"> exists
+  - Check if JavaScript is enabled
+  - Verify bundle files are loading
+
+  Styles not working:
+  - Check CSS file imports
+  - Clear browser cache
+  - Check build output
+
+  Images not loading:
+  - Use %PUBLIC_URL% for public folder images
+  - Import images in components
+  - Check file paths
+-->
