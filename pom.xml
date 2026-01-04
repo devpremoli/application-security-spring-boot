@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        PARENT: Spring Boot Starter Parent
+        - Provides dependency management for Spring Boot applications
+        - Contains default configurations for plugins and dependencies
+        - Manages version numbers so you don't have to specify them for most dependencies
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.1</version>
+        <relativePath/>
+    </parent>
+
+    <!-- PROJECT COORDINATES -->
+    <groupId>com.security</groupId>
+    <artifactId>spring-boot-jwt-security</artifactId>
+    <version>1.0.0</version>
+    <name>Spring Boot JWT Security Application</name>
+    <description>Learning project for Spring Security with JWT authentication</description>
+
+    <properties>
+        <!-- Java version - Spring Boot 3.x requires Java 17 or higher -->
+        <java.version>17</java.version>
+
+        <!--
+            JWT Library Version
+            - jjwt is a Java library for creating and parsing JSON Web Tokens
+            - We use version 0.12.3 which is the latest stable version
+        -->
+        <jjwt.version>0.12.3</jjwt.version>
+    </properties>
+
+    <dependencies>
+        <!--
+            SPRING BOOT WEB STARTER
+            - Includes Spring MVC for building REST APIs
+            - Embedded Tomcat server
+            - JSON support via Jackson
+            - Auto-configuration for web applications
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--
+            SPRING SECURITY STARTER
+            - Core Spring Security framework
+            - Authentication and authorization support
+            - Protection against common vulnerabilities (CSRF, XSS, etc.)
+            - Security filter chain
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!--
+            SPRING DATA JPA STARTER
+            - Object-Relational Mapping (ORM) with Hibernate
+            - Repository abstraction for database operations
+            - Transaction management
+            - Query derivation from method names
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!--
+            SPRING VALIDATION
+            - Bean validation using annotations (@NotBlank, @Email, @Size, etc.)
+            - Hibernate Validator implementation
+            - Automatic validation in Spring MVC
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!--
+            H2 DATABASE
+            - In-memory database perfect for learning and testing
+            - No installation required
+            - Includes web console for viewing database
+            - In production, replace with PostgreSQL, MySQL, etc.
+        -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--
+            JJWT - API
+            - Main JWT API interfaces and classes
+            - Defines how to create and parse JWTs
+        -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+
+        <!--
+            JJWT - Implementation
+            - Runtime implementation of JWT operations
+            - Required for actual JWT creation and parsing
+        -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--
+            JJWT - Jackson Support
+            - JSON serialization/deserialization for JWT claims
+            - Integrates JWT with Jackson JSON library
+        -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--
+            LOMBOK (Optional but helpful)
+            - Reduces boilerplate code with annotations
+            - @Data, @Getter, @Setter, @Builder, etc.
+            - Makes code cleaner and easier to maintain
+        -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--
+            SPRING BOOT TEST STARTER
+            - Testing support with JUnit 5
+            - Spring Test framework
+            - Mockito for mocking
+            - AssertJ for assertions
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+            SPRING SECURITY TEST
+            - Testing utilities for Spring Security
+            - @WithMockUser, @WithUserDetails annotations
+            - SecurityMockMvcRequestPostProcessors for testing secured endpoints
+        -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+                SPRING BOOT MAVEN PLUGIN
+                - Creates executable JAR/WAR files
+                - Provides 'spring-boot:run' goal to run the application
+                - Manages application packaging
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <!-- Exclude Lombok from final JAR (only needed at compile time) -->
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
