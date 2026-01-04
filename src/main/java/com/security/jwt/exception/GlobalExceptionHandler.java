@@ -230,20 +230,27 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * ALTERNATIVE: DETAILED ERROR RESPONSE
+     * NOTE: ALTERNATIVE DETAILED ERROR RESPONSE
      *
-     * This version provides more detailed information
-     * Useful for debugging and development
+     * If you want more detailed error information (including rejected values),
+     * you can uncomment this alternative implementation.
+     * However, you CANNOT have both handlers active at the same time.
+     *
+     * To use the detailed version:
+     * 1. Comment out or remove the simple handleValidationExceptions() method above
+     * 2. Uncomment the code below
+     *
+     * Detailed version provides:
+     * - List of field errors with rejected values
+     * - Global errors (object-level constraints)
+     * - More structured response
      */
+
+    /*
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationErrorResponse> handleValidationExceptionsDetailed(
             MethodArgumentNotValidException ex) {
 
-        /*
-         * Create detailed error response with:
-         * - List of field errors with rejected values
-         * - Global errors (object-level constraints)
-         */
         List<FieldValidationError> fieldErrors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
@@ -254,12 +261,6 @@ public class GlobalExceptionHandler {
                 ))
                 .collect(Collectors.toList());
 
-        /*
-         * GLOBAL ERRORS
-         *
-         * These are object-level validation errors
-         * Example: @AssertTrue on a method that validates multiple fields
-         */
         List<String> globalErrors = ex.getBindingResult()
                 .getGlobalErrors()
                 .stream()
@@ -278,11 +279,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    /**
-     * VALIDATION ERROR RESPONSE DTO
-     *
-     * Structured error response for better client handling
-     */
     public static class ValidationErrorResponse {
         private LocalDateTime timestamp;
         private int status;
@@ -302,7 +298,6 @@ public class GlobalExceptionHandler {
             this.globalErrors = globalErrors;
         }
 
-        // Getters
         public LocalDateTime getTimestamp() { return timestamp; }
         public int getStatus() { return status; }
         public String getError() { return error; }
@@ -311,11 +306,6 @@ public class GlobalExceptionHandler {
         public List<String> getGlobalErrors() { return globalErrors; }
     }
 
-    /**
-     * FIELD VALIDATION ERROR DTO
-     *
-     * Details about a single field's validation error
-     */
     public static class FieldValidationError {
         private String field;
         private String message;
@@ -327,11 +317,11 @@ public class GlobalExceptionHandler {
             this.rejectedValue = rejectedValue;
         }
 
-        // Getters
         public String getField() { return field; }
         public String getMessage() { return message; }
         public Object getRejectedValue() { return rejectedValue; }
     }
+    */
 }
 
 /*
